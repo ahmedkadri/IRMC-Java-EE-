@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+	
+	
+	<ui:include src="/backheader.xhtml" />
+	<center>
+	<br /><br /><br /><br /><br />
+	
+		<p:dataTable value="#{offreBean.lcond()}" var="liste" border="2" tableStyle="width:auto">
+			
+		
+			
+			<p:column id="titleheader" >
+				<f:facet name="header">
+				<h:outputText value="nomm" />
+				</f:facet>
+				<h:outputText value="#{liste.last_name}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">prenom</f:facet>
+				#{liste.first_name}
+			</p:column>
+			<p:column>
+				<f:facet name="header">mail</f:facet>
+				#{liste.mail}
+			</p:column>
+			<p:column>
+				<f:facet name="header">numero</f:facet>
+				#{liste.phone_number}
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">score</f:facet>
+				#{liste.pourcentage}
+			</p:column>
+			
+		</p:dataTable>
+		
+	
+	</center>
+	
+</body> 
+</html>

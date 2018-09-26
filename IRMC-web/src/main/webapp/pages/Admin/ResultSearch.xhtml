@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	<head>
+	</head>
+	<body>
+	<ui:include src="backheader.xhtml" />
+	<h:form id="form1">
+	
+	<h:message for="motcle" style="color:red"/>
+	<h:inputText id="motcle" value="#{libraryBean.domaineSelected}" required="true" requiredMessage="entrez un mot clé" />
+	<h:commandButton action="#{libraryBean.getbydomains()}" value="chercher"></h:commandButton>
+	
+	<h:dataTable id="libraries" value="#{libraryBean.searched}" var="library" border="2"	>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nom de la bibliotheque" /> 
+					</f:facet>
+					<h:outputText value="#{library.nom}" />
+				</h:column>
+					<h:column>
+					<f:facet name="header">
+						<h:outputText value="Sigle" /> 
+					</f:facet>
+					<h:outputText value="#{library.librarySigle}" />
+				</h:column>
+				
+				
+					<h:column>
+					<f:facet name="header">
+						<h:outputText value="Ville" /> 
+					</f:facet>
+					<h:outputText value="#{library.address.city}" />
+				
+				</h:column>
+			
+			
+				
+		
+					<h:column>
+					<f:facet name="header">
+						<h:outputText value="Addresse" /> 
+					</f:facet>
+					<h:outputText value="#{library.address.description}" />
+				
+				</h:column>
+			
+					<h:column>
+					<f:facet name="header">
+						
+					</f:facet>
+					
+					<h:commandLink action="#{libraryBean.modifier(library)}" value="Modifier" />
+				</h:column>
+				
+			<h:column>
+					<f:facet name="header">
+						
+					</f:facet>
+					
+					<h:commandLink action="#{libraryBean.supprimer(library.libraryId)}" value="Supprimer" />
+				</h:column>
+		
+			<h:column>
+					<f:facet name="header">
+						
+					</f:facet>
+					
+					<h:commandLink action="#{libraryBean.details(library)}"  value="details" />
+				</h:column>
+		
+		
+		
+			</h:dataTable>
+			</h:form>
+	</body>
+	</html>

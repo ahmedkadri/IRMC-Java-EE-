@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"> 
+
+	
+<h:head>
+	<style>
+		.ui-growl {
+			left:900px;
+			margin-bottom: 10px;
+			margin-top: 100px;
+		}
+		fieldset{
+		  border: 1px solid rgb(128,128,128);
+		  width: 700px;
+		}
+		div.relative {
+		    position: relative;
+		    left: 390px;
+		}
+			div.relative2 {
+		   position: relative;
+		    width: 400px;
+		    height: 400px;
+		    border: 3px solid #6495ED;
+		    
+		}
+	</style>
+</h:head> 
+<body> 
+
+	<ui:include src="/backheader.xhtml" />
+	<div class="relative" >
+	<h:form>
+	
+		<h1 style="color:red;"> <big> Quiz : <h:outputText value="#{quizBean.quiz_nomb}" /> </big> </h1>
+		
+		<h2 style="color:green;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:outputText value="&nbsp;Question" /> </h2>
+		
+		
+		<h3> <b:commandButton action="AllOffre" value="Terminer" rendered="#{quizBean.visibleTT}" /> </h3>
+		
+		
+		<h:message for="intxt" errorStyle="color:red;"/>
+		
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;<h:inputText id="intxt" rendered="#{quizBean.visible}" value="#{quizBean.question_actualb}" />
+		
+		&nbsp; 
+		<b:commandButton action="#{quizBean.ShowQuestion()}" value="   Submit  " rendered="#{quizBean.visible}" >
+			<f:ajax execute="@form" render="@form" />
+		</b:commandButton>
+		
+		<f:ajax event="keyup" execute="intxt" render="outxt"/>
+		<p:outputLabel id="outxt" value="#{quizBean.question_actualb}"/>
+		<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;
+	
+	</h:form>
+	</div>
+	
+	<h:form id="up">
+		<center>
+		<div class="relative2" >
+		<b:growl id="message"/>
+		
+		<br/>
+		&nbsp;
+		&nbsp;
+		&nbsp;
+		<fieldset style = "width: 300px; margin:  0px auto;">
+		<legend>&nbsp;&nbsp;&nbsp;&nbsp;Les Réponses</legend>
+		<h:message for="repn" errorStyle="color:red;"/>
+		<h:panelGrid columns="2" rendered="#{quizBean.etat}" border="0">
+		
+			
+			
+			<h:outputLabel value="Réponse" /> 
+			<b:inputText value="#{quizBean.lareponseb}" id="repn" />
+			
+			
+			<h:outputLabel value="True/False" />
+			<b:selectBooleanCheckbox value="#{quizBean.correcteb}" />
+			
+			<br/><br/>
+			<b:commandButton action="#{quizBean.AddReponse()}" value="   Submit  " />
+			
+		</h:panelGrid>
+		</fieldset>
+		
+		
+			<br/><br/>
+			<b:commandButton action="#{quizBean.Q_Suivant()}" value="  Question suivante  " update="message" />
+			</div>
+			</center>
+	</h:form>
+	
+	
+	
+</body> 
+</html>

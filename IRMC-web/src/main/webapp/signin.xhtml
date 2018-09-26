@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+    
+<!-- Mirrored from demo.presstigers.com/libraria/public_html/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 14 Mar 2018 18:47:00 GMT -->
+  <h:head>        
+        
+        <!-- Meta -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+        
+        <!-- Title -->
+        <title> IRMC </title>
+        
+        <!-- Favicon -->
+        <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
+        
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        
+        <!-- Mobile Menu -->
+        <link href="css/mmenu.css" rel="stylesheet" type="text/css" />
+        <link href="css/mmenu.positioning.css" rel="stylesheet" type="text/css" />
+        
+        <!-- Stylesheet -->
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.min.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+        </meta>
+    </h:head>
+
+
+    <h:body>
+        
+        <!-- Start: header Section -->
+                                 
+	<ui:include src="/header.xhtml" />
+
+        <!-- End: Header h:section -->
+
+        <!-- End: h:header Section -->
+        
+        <section class="page-banner services-banner">
+            <div class="container">
+               
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="index-2.html">Home</a></li>
+                        <li>Signin</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- End: Page Banner -->
+        <!-- Start: Cart Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    <div class="signin-main">
+                        <div class="container">
+                            <div class="woocommerce">
+                                <div class="woocommerce-login">
+                                    <div class="company-info signin-register">
+                                        <div class="col-md-5 col-md-offset-1 border-dark-left">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="company-detail bg-dark margin-left">
+                                                        <div class="signin-head">
+                                                            <h2>Sign in</h2>
+                                                            <span class="underline left"></span>
+                                                        </div>
+                                                      <h:form class="login" method="post">
+											           <p class="form-row form-row-first input-required">
+											             <h:panelGrid columns="2">
+											
+															<h:outputLabel value="Login" />
+															<h:inputText value="#{quizBean.mail}" required="true" />
+																						
+															<h:outputLabel value="Password" />
+															<h:inputSecret value="#{quizBean.pwdhash}" required="true" />
+																											
+															<h:commandButton id="btn" action="#{quizBean.authentification()}" value="Sign in" />
+															<h:message for="btn"/>
+													</h:panelGrid>
+																						                        
+											                                                             </p>
+											                                                      
+											      </h:form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 border-dark new-user">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="company-detail new-account bg-light margin-right">
+                                                        <div class="new-user-head">
+                                                            <h2>Create New Account</h2>
+                                                            
+<h:form id="add">
+		<h:messages />
+
+   <fieldset>
+   
+         	<h:outputLabel for="nom" >Nom<span class="requis">*</span></h:outputLabel>
+				<h:inputText value="#{loginBean.usr.last_name}" id="nom"   required="true"/>
+				<br/>
+				<h:outputLabel for="prenom" >Prenom<span class="requis">*</span></h:outputLabel>
+				<h:inputText value="#{loginBean.usr.first_name}" id="prenom" required="true" />
+				<br/>
+		
+	     	<h:outputLabel for="email">Adresse email <span class="requis">*</span></h:outputLabel>
+	     	<h:inputText value="#{loginBean.usr.mail}" id="email" validatorMessage="format mail false" required="true">
+				<f:validateRegex pattern=".+\@.+\..+"></f:validateRegex>
+				</h:inputText>
+	        
+				<br/>
+	        <h:outputLabel for="motdepasse">Mot de passe <span class="requis">*</span></h:outputLabel>
+				<h:inputSecret value="#{loginBean.usr.password}" id="motdepasse"  required="true"/>
+	        <h:message id="motDePasseMessage" for="motdepasse" errorClass="erreur" />
+	        <br />
+	
+	
+			<h:outputLabel value="Numéro telephone" for="tel" />
+				<h:inputText value="#{loginBean.usr.phone_number}" id="tel"  required="true"/>
+				<br/>
+				<h:outputLabel value="date de naissance" for="datedenaissance" />
+				<h:inputText value="#{loginBean.usr.datenaissance}" id="datedenaissance" >
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:inputText>
+				<br/>
+				<h:outputLabel value="Adresse" for="adr" />
+				<h:inputText value="#{loginBean.usr.address}" id="adr"  required="true"/>
+				<h:message for="email"/>
+	          <br/>
+	        <h:messages globalOnly="true" infoClass="info" />
+	
+	        <h:commandButton value="Inscription" action="#{loginBean.addUser()}" styleClass="sansLabel" >
+				</h:commandButton>
+				<br></br>
+				
+				
+          </fieldset>
+	
+		</h:form>
+                                                            
+                                                            
+                                                        </div>
+                                                     
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        
+        
+        
+        <!-- jQuery Latest Version 1.x -->
+        <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+        
+        <!-- jQuery UI -->
+        <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+        
+        <!-- jQuery Easing -->
+        <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+
+        <!-- Bootstrap -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        
+        <!-- Mobile Menu -->
+        <script type="text/javascript" src="js/mmenu.min.js"></script>
+        
+        <!-- Harvey - State manager for media queries -->
+        <script type="text/javascript" src="js/harvey.min.js"></script>
+        
+        <!-- Waypoints - Load Elements on View -->
+        <script type="text/javascript" src="js/waypoints.min.js"></script>
+
+        <!-- Facts Counter -->
+        <script type="text/javascript" src="js/facts.counter.min.js"></script>
+
+        <!-- MixItUp - Category Filter -->
+        <script type="text/javascript" src="js/mixitup.min.js"></script>
+
+        <!-- Owl Carousel -->
+        <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+        
+        <!-- Accordion -->
+        <script type="text/javascript" src="js/accordion.min.js"></script>
+        
+        <!-- Responsive Tabs -->
+        <script type="text/javascript" src="js/responsive.tabs.min.js"></script>
+        
+        <!-- Responsive Table -->
+        <script type="text/javascript" src="js/responsive.table.min.js"></script>
+        
+        <!-- Masonry -->
+        <script type="text/javascript" src="js/masonry.min.js"></script>
+        
+        <!-- Carousel Swipe -->
+        <script type="text/javascript" src="js/carousel.swipe.min.js"></script>
+        
+        <!-- bxSlider -->
+        <script type="text/javascript" src="js/bxslider.min.js"></script>
+        
+        <!-- Custom Scripts -->
+        <script type="text/javascript" src="js/main.js"></script>
+
+    </h:body>
+
+</ui:composition>

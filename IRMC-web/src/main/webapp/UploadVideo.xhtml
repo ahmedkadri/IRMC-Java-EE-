@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"> 
+
+<h:head>
+	<style>
+		.ui-growl {
+			left:900px;
+			margin-bottom: 10px;
+			margin-top: 100px;
+		}
+	</style>
+</h:head> 
+<body> 
+	
+	<ui:include src="/backheader.xhtml" />
+	
+	<center>
+		<h1>List Des Videos</h1>
+		<br /><br /><br />
+		
+		<h:form id="form_video" enctype="multipart/form-data">
+		
+			<p:growl id="message"/>
+			<br/><br/>
+			
+			<table>
+			<tr>
+				<td> <h:outputLabel value="Titre :" /> </td>
+				<td> <b:inputText value="#{videoBean.video.title}" label="Veuillez mettre un titre"/> </td>
+			</tr>
+			<tr>
+				<td> <h:outputLabel value="Description :" /> </td>
+				<td> <b:inputText value="#{videoBean.video.description}" label="Veuillez mettre une description"/> </td>
+			</tr>
+			<tr>
+				<td>
+				<span class="btn btn-default btn-file"> 
+				<h:inputFile value="#{videoBean.file}" label="Veuillez upload video" name="file" id="file" class="inputfile"/> 
+				</span>
+				</td>
+			</tr>
+			</table>
+			<br/><br/>
+
+			<b:commandButton action="#{videoBean.doUploadVideo()}"  value="Upload Video"/>
+			
+			
+		</h:form>
+		
+	</center>
+</body> 
+</html>

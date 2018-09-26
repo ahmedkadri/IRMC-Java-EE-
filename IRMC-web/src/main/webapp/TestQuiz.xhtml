@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<style>
+		div.relative {
+		   position: relative;
+    width: 400px;
+    height: 200px;
+    border: 3px solid #6495ED;
+		    
+		}
+	</style>
+</h:head> 
+<body> 
+
+	<ui:include src="/backheader.xhtml" />
+	<center>
+	<h:form>
+		
+		<p:growl id="message"/>
+	<br/><br/><br/>
+			<ui:repeat var="Q" value="#{quizBean.testQuetion()}" varStatus="status">
+			
+			<div class="relative">
+			
+			<fieldset style="width:360px;">
+				<br/><br/>
+				<table>
+					<tr>
+						<td> <p:outputLabel> Question numeo (#{status.index}) : #{Q.question_actual} </p:outputLabel> </td>
+					</tr>
+					<tr>
+						<td>
+							<h:dataTable value="#{Q.listeReponse}" var="R" >
+								<h:column>
+								
+									<p:selectManyCheckbox valueChangeListener="#{quizBean.CheckQuestiona}">
+										<f:selectItem itemValue="#{R.reponse_id}" itemLabel=" "></f:selectItem>
+									</p:selectManyCheckbox>
+									
+									
+								</h:column>
+								<h:column>
+								<p:outputLabel> #{R.lareponse} </p:outputLabel>
+									
+								<!---	<input name="select" type="radio"  id="r1" value="#{R.correcte}"/>	-->
+								</h:column>
+							</h:dataTable>
+						</td>	
+					</tr>
+				</table>
+
+			</fieldset>
+		</div>
+		</ui:repeat>
+		
+		<br/><br/><br/>
+		<p:commandButton action="#{quizBean.Resultat()}"  update="message" value="&nbsp;  Resultat &nbsp; " />
+		
+		<br/><br/>
+		<h:outputText value="" />
+	
+</h:form>
+</center>
+</body> 
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+		<style>
+		.ui-growl {
+			left:900px;
+			margin-bottom: 10px;
+			margin-top: 100px;
+		}
+	</style>
+</h:head> 
+<body> 
+
+	<center>
+		<h:form id="formregister" enctype="multipart/form-data">
+		<p:growl id="message"/>
+		<br/><br/><br/> 
+		<table>
+			<tr>
+				<td> <p:outputLabel value="Votre Nom :" /> </td> 
+				<td> <p:inputText  value="#{condidatureBean.nomcondidatb}" id="nom"/> <h:message for="nom" errorStyle="color:red;"/> </td>
+			
+			</tr>
+			<tr>
+				<td> <p:outputLabel value="Votre PreNom :" /> </td> 
+				<td> <p:inputText  value="#{condidatureBean.prenomcondidatb}" id="prenom"/> <h:message for="prenom" errorStyle="color:red;"/> </td>
+			</tr>
+			<tr>
+				<td> <p:outputLabel value="Votre Mail :" /> </td> 
+				<td> <p:inputText  value="#{condidatureBean.mailcondidatb}" id="mail"/> <h:message for="mail" errorStyle="color:red;"/> </td>
+			</tr>
+			<tr>
+				<td> <p:outputLabel value="Votre Numero :" /> </td> 
+				<td> <p:inputText  value="#{condidatureBean.numerocondidatb}" id="numero"/> <h:message for="numero" errorStyle="color:red;"/> </td>
+			</tr>
+			
+			<tr>
+				<td> <p:outputLabel value="Choisir Votre fonction :" /> </td> 
+				
+				<td> <p:selectOneMenu value="#{condidatureBean.fonctioncondidatb}">
+						<f:selectItem itemLabel="Etudiant" itemValue="Etudiant"/>
+						<f:selectItem itemLabel="Employer" itemValue="Employer"/>
+						<f:selectItem itemLabel="Chercheur" itemValue="Chercheur"/>
+					</p:selectOneMenu> </td>
+			</tr>
+			
+			<tr>
+				<td> <p:outputLabel value="Votre Cv :" /> </td> 
+				<td> <p:inputText type="file" value="#{condidatureBean.filex}" id="file"/> <h:message for="file" errorStyle="color:red;"/> </td>
+				<td> <h:commandButton value="Upload" action="#{condidatureBean.upload()}" /> </td>
+			</tr>
+		
+		</table>
+		
+			<p:commandButton action="#{condidatureBean.Postuler()}" value="Postuler" update="message" />
+		</h:form>
+	</center>
+</body> 
+</html>

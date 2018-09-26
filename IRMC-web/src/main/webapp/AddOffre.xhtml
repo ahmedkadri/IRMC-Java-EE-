@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:b="http://bootsfaces.net/ui"> 
+
+<h:head>
+	<style>
+		.ui-growl {
+			left:900px;
+			margin-bottom: 10px;
+			margin-top: 100px;
+		}
+		
+		.fixed {
+		    position: relative;
+			width: 100px;
+    		height: 100px;
+    		top: 80px;
+    		margin-right: -52%;
+    		margin-left: 20%;
+
+		}
+	</style>
+</h:head> 
+<body> 
+	
+	<ui:include src="/backheader.xhtml" />
+	
+	
+	
+	
+	<div class="fixed">
+	<b:container layout="fluid" >
+	
+	 <b:panel title="Ajoutez Une Offre" look="primary" >
+
+		<h:form id="formregister">
+			
+			<p:growl id="message"/>
+			<center>
+			<br/><br/>	
+		<table>
+			<tr>
+				<td> <p:outputLabel value="Title :" /> </td> 
+				<td> <b:inputText  value="#{offreBean.titleb}" id="Title"/> <h:message for="Title" errorStyle="color:red;"/> </td>
+			</tr>
+			<tr>
+				<td> <p:outputLabel value="Description :" id="desc"/> </td> 
+				<td> <b:inputTextarea value="#{offreBean.descriptionb}" id="Description"/> <h:message for="Description" errorStyle="color:red;"/> </td>
+			</tr>
+			<tr>
+				<td> <p:outputLabel value="Type D'Offre :" /> </td> 
+				<td> <b:selectOneMenu value="#{offreBean.offretypeb}">
+						<f:selectItem itemLabel="Scholarship" itemValue="Scholarship"/>
+						<f:selectItem itemLabel="Training" itemValue="Training"/>
+						<f:selectItem itemLabel="Employment" itemValue="Employment"/>
+					</b:selectOneMenu> </td>
+			</tr>
+			<tr>
+				<td> <p:outputLabel value="Date De Creation :" /> </td> 
+				<td> <p:calendar value="#{offreBean.creationdateb}" pattern="MM/dd/yyyy" id="DateC"></p:calendar> 
+				<h:message for="DateC" errorStyle="color:red;"/> </td>
+			</tr>
+			<tr>
+				<td> <p:outputLabel value="Date D'expiration :" /> </td> 
+				<td> <p:calendar value="#{offreBean.experationdateb}" pattern="MM/dd/yyyy" id="DateE"></p:calendar> 
+				<h:message for="DateE" errorStyle="color:red;"/> </td>
+			</tr>
+		</table>
+					
+				<br/><br/>
+				<b:commandButton action="#{offreBean.AddOffre()}" value="Ajouter Offre" update="message" />
+			</center>
+		</h:form>
+
+		</b:panel>
+		
+	</b:container>
+	</div>
+</body> 
+</ui:composition>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:b="http://bootsfaces.net/ui"> 
+
+<h:head>
+	<script>
+	.fixed {
+	    position: relative;
+		width: 100px;
+		height: 100px;
+		top: 80px;
+		margin-right: -52%;
+		margin-left: 20%;
+
+	}
+	</script>
+</h:head> 
+<body> 
+<ui:include src="/backheader.xhtml" />
+<div class="fixed">
+	<b:container layout="fluid" >
+	
+	 <b:panel title="Ajoutez Une Offre" look="primary" >
+	<center>
+		
+		<h:form>
+			<h:panelGrid>
+				<p:outputLabel value="Nom Du Quiz :" />
+				<b:inputText value="#{quizBean.quiz_nomb}" id="qz"/>
+				<h:message for="qz" errorStyle="color:red;"/>
+				
+				<p:outputLabel value="Type De Quiz :" />
+					<b:selectOneMenu value="#{quizBean.quiztypeb}">
+						<f:selectItem itemLabel="PSYCHO_TECHNIQUE" itemValue="PSYCHO_TECHNIQUE"/>
+						<f:selectItem itemLabel="TECHNIQUE" itemValue="TECHNIQUE"/>
+						<f:selectItem itemLabel="QI" itemValue="QI"/>
+						</b:selectOneMenu>
+						<b:commandButton action="#{quizBean.addQuiz()}" value="Ajouter Quiz" />
+					
+			</h:panelGrid>
+		</h:form>
+	
+	</center>
+	</b:panel>
+	</b:container>
+	</div>
+</body> 
+</html>

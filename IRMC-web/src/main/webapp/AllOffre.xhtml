@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:b="http://bootsfaces.net/ui"> 
+
+<h:head>
+</h:head> 
+
+<body> 
+	
+	<ui:include src="/backheader.xhtml" />
+	<center>
+	<br /><br /><br /><br /><br />
+	
+		<p:dataTable value="#{offreBean.alloffre}" var="offre" border="2" tableStyle="width:auto">
+			
+		
+			
+			<p:column id="titleheader" >
+				<f:facet name="header">
+				<h:outputText value="Title" />
+				</f:facet>
+				<h:outputText value="#{offre.title}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Description</f:facet>
+				#{offre.description}
+			</p:column>
+			<p:column>
+				<f:facet name="header">Offre Type</f:facet>
+				#{offre.offretype}
+			</p:column>
+			<p:column>
+				<f:facet name="header">Creation Date</f:facet>
+				#{offre.creationdate}
+			</p:column>
+			<p:column>
+				<f:facet name="header">Experation Date</f:facet>
+				#{offre.experationdate}
+			</p:column>
+			<p:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:form>
+					<b:commandButton action="#{offreBean.removeOffre(offre)}" value="Delete" />
+				</h:form>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Update</f:facet>
+				<h:form>
+					<b:commandButton action="#{offreBean.redi_update(offre)}" value="Update" />
+				</h:form>
+			</p:column>
+			<p:column>
+				
+				<f:facet name="header">Add Quiz</f:facet>
+				<h:form>
+				<p:growl id="message"/>
+					<b:commandButton action="#{quizBean.red2(offre)}" value="Add_Quiz" 
+					rendered="#{offre.offretype!='Scholarship'}" update="message" />
+				</h:form>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">les Condidat</f:facet>
+				<h:form>
+					<b:commandButton action="#{offreBean.redi_listcon(offre)}" value="Condidat" />
+				</h:form>
+			</p:column>
+			
+		</p:dataTable>
+		
+		<h:form id="up">
+		
+		<h:panelGrid columns="2" rendered="#{offreBean.etat}">
+		
+				<p:outputLabel value="Title" />
+				<b:inputText value="#{offreBean.titleb}" />
+				<p:outputLabel value="Description" />
+				<b:inputTextarea value="#{offreBean.descriptionb}" />
+				<p:outputLabel value="Type D'Offre :" />
+					<b:selectOneMenu value="#{offreBean.offretypeb}">
+						<f:selectItem itemLabel="Scholarship" itemValue="Scholarship"/>
+						<f:selectItem itemLabel="Training" itemValue="Training"/>
+						<f:selectItem itemLabel="Employment" itemValue="Employment"/>
+					</b:selectOneMenu>
+				<p:outputLabel value="Date De Creation :" />
+				<p:calendar value="#{offreBean.creationdateb}" pattern="MM/dd/yyyy"></p:calendar>
+				<p:outputLabel value="Date D'expiration :" />
+				<p:calendar value="#{offreBean.experationdateb}" pattern="MM/dd/yyyy"></p:calendar>
+		
+				<b:commandButton action="#{offreBean.UpdateOffre()}" value="Update" />
+		</h:panelGrid>
+		
+		</h:form>
+	</center>
+</body> 
+</ui:composition>
